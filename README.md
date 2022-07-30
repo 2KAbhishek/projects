@@ -20,7 +20,7 @@
 <a href="https://github.com/2KAbhishek/projects/pulse">
 <img alt="Last Updated" src="https://img.shields.io/github/last-commit/2kabhishek/projects?style=flat&color=e06c75&label="> </a>
 
-<h3>All Of My Projects 🛍️🎇</h3>
+<h3>Showcase All Your Projects 🛍️🎇</h3>
 
 <figure>
   <img src= "images/screenshot.png" alt="projects screenshot" style="width:100%">
@@ -32,10 +32,10 @@
 
 ## What is this
 
-Present all your projects in style with a super customisable web app! ✨
+Present all your projects in style with a super customizable web app! ✨
 
-Projects uses the GitHub API to list all your GitHub projects in a nice searchable grid.
-Also shows pretty programming icons using devicons.
+`Projects` uses the GitHub API to list all your GitHub projects in a nice searchable grid.
+Also shows pretty programming icons using `devicons`.
 
 ## Inspiration
 
@@ -57,12 +57,12 @@ You can easily set up projects to show your own repos.
 After cloning just open up `script.js` and update the `username` variable.
 Push your changes, then go to repo settings on GitHub and enable GitHub Pages.
 
-The site should be live on https://<username>.github.io/projects
+The site should be live on `https://<username>.github.io/projects`
 
 #### Number Of Repos
 
-The number of repos is controlled by the `maxPage` variable, the GitHub API supports 100 repos per page max.
-If you have less than 100 repos, set `maxPage` to 1, if you have 300 then 3.
+The number of repos is controlled by the `maxPages` variable, the GitHub API supports 100 repos per page max.
+If you have less than 100 repos, set `maxPages` to 1, if you have 300 then 3.
 
 You can also edit the fetch query to reduce the per page repo count.
 > There's no pagination, all repos are shown on the same page.
