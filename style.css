@@ -56,8 +56,8 @@ h2 {
 }
 
 img {
-    border: 1px solid var(--accent);
-    box-shadow: 5px 10px 15px;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0px 6px var(--accent), 0 0px 6px var(--accent);
     max-width: 100%;
     height: auto;
 }
@@ -125,6 +125,7 @@ input {
     padding: 1em;
     margin-bottom: 1em;
     border: 2px solid var(--accent);
+    color: var(--text);
 }
 
 .repos {
@@ -136,6 +137,7 @@ input {
     padding: 2em;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    margin-bottom: 4em;
 }
 
 h3 {
