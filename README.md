@@ -82,10 +82,6 @@ Projects was built using `HTML` `CSS` & `JavaScript`.
 It was built on Neovim and the python http server.
 Uses GitHub API for data and Devicons for programming icons.
 
-## Challenges faced
-
-While building projects the main challenges were `<issue/difficulty>`
-
 ## What I learned
 
 - Learned about a few quirks of the fetch API, especially implementation of `maxPages`.
