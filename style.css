@@ -32,6 +32,11 @@ body {
     cursor: pointer;
     align-self: center;
     width: 300px;
+h2 {
+    width: 100%;
+    text-align: center;
+    color: var(--text);
+    margin: 0;
 }
 
 img {
@@ -39,6 +44,11 @@ img {
     box-shadow: 5px 10px 15px;
     max-width: 100%;
     height: auto;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
 }
 
 .github-img {
@@ -102,7 +112,7 @@ ul {
     margin: 0;
     padding: 0;
     border-bottom: 1px solid var(--text);
-    padding-bottom: 19px;
+    padding-bottom: 18px;
 }
 
 .filter-repos, input {
