@@ -63,13 +63,11 @@ const displayProfile = function (profile) {
             <p>${profile.bio}</p>
             <p>
                 <strong>Location:</strong> ${profile.location}
-                <strong>Company:</strong> ${profile.company}
             </p>
             <p>
                 <strong>@${profile.login} </strong>
                 Repos: ${profile.public_repos}
                 Gists: ${profile.public_gists}
-                Followers: ${profile.followers}
             </p>
         </div>
     `;
