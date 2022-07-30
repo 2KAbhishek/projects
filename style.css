@@ -26,12 +26,18 @@ body {
     display: none !important;
 }
 
-.view-repos {
-    margin-top: 1.5em;
-    padding: 0.5em 1em;
-    cursor: pointer;
-    align-self: center;
-    width: 300px;
+h1 {
+    color: var(--accent);
+    margin-bottom: 4px;
+}
+
+small {
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin-bottom: 20px;
+}
+
 h2 {
     width: 100%;
     text-align: center;
