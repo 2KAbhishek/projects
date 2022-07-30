@@ -25,10 +25,18 @@ const displayProfile = function (profile) {
             <img alt="user avatar" src=${profile.avatar_url} />
         </figure>
         <div>
-            <p><strong>Name:</strong> ${profile.name}</p>
-            <p><strong>Bio:</strong> ${profile.bio}</p>
-            <p><strong>Location:</strong> ${profile.location}</p>
-            <p><strong>Number of public repos:</strong> ${profile.public_repos}</p>
+            <h2><a href=${profile.blog}><strong>${profile.name}</strong></a></h2>
+            <p>${profile.bio}</p>
+            <p>
+                <strong>Location:</strong> ${profile.location}
+                <strong>Company:</strong> ${profile.company}
+            </p>
+            <p>
+                <strong>@${profile.login} </strong>
+                Repos: ${profile.public_repos}
+                Gists: ${profile.public_gists}
+                Followers: ${profile.followers}
+            </p>
         </div>
     `;
 };
@@ -85,4 +93,3 @@ filterInput.addEventListener('input', function (e) {
         }
     }
 });
-
