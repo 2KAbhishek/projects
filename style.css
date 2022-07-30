@@ -126,6 +126,7 @@ input {
     margin-bottom: 1em;
     border: 2px solid var(--accent);
     color: var(--text);
+    text-align: center;
 }
 
 .repos {
