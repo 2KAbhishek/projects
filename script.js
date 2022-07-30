@@ -40,10 +40,10 @@ const getProfile = async function () {
     const res = await fetch(
         `https://api.github.com/users/${username}`
         // {
-        // headers: {
-        //     Accept: 'application/vnd.github+json',
-        //     Authorization: 'token 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'
-        // }
+        //     headers: {
+        //         Accept: 'application/vnd.github+json',
+        //         Authorization: 'token your-personal-access-token-here'
+        //     }
         // }
     );
     const profile = await res.json();
@@ -86,7 +86,7 @@ const getRepos = async function () {
             //     headers: {
             //         Accept: 'application/vnd.github+json',
             //         Authorization:
-            //             'token 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'
+            //             'token your-personal-access-token-here'
             //     }
             // }
         );
