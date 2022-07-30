@@ -105,7 +105,8 @@ ul {
     padding-bottom: 19px;
 }
 
-.filter-repos {
+.filter-repos, input {
+    background: var(--bg-user);
     width: 300px;
     margin-top: 1em;
     padding: 1em;
