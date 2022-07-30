@@ -21,6 +21,16 @@ body {
     font-size: 16px;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 90%;
+    max-width: 1280px;
+}
+
 .hide {
     /* '!important' is to make sure that when we add the class using JS, it takes precendence */
     display: none !important;
@@ -67,16 +77,6 @@ ul {
     padding: 0;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 90%;
-    max-width: 1200px;
-}
-
 .user-info {
     display: flex;
     flex-wrap: wrap;
@@ -115,7 +115,8 @@ ul {
     padding-bottom: 18px;
 }
 
-.filter-repos, input {
+.filter-repos,
+input {
     background: var(--bg-user);
     width: 50%;
     border-radius: 20px;
@@ -154,7 +155,7 @@ h3 {
 
 .repo-list li {
     width: 100%;
-    min-height: 150px;
+    min-height: 180px;
     border-radius: 10px;
     margin: 1em 0;
     border: 1px solid var(--accent);
@@ -170,7 +171,7 @@ h3 {
 
 .repo-list li a {
     padding: 10px 20px;
-    background: var(--bg-user);
+    background: var(--bg-main);
     border-radius: 30px;
     border: 2px solid var(--accent);
     color: var(--text);

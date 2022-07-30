@@ -71,8 +71,8 @@ const displayRepos = function (repos) {
         listItem.classList.add('repo');
         listItem.innerHTML = `
             <h3>${repo.name}</h3>
-            <span>${repo.description}</span> <br/>
-            <code>${repo.language}</code> <br />
+            <span>${repo.description}</span> <br/><br/>
+            <span>${repo.language}</span> <br />
             <br />
             <a href=${repo.homepage}>View Project</a>`;
         repoList.append(listItem);
