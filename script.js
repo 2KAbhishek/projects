@@ -73,6 +73,7 @@ const displayRepos = function (repos) {
             <h3>${repo.name}</h3>
             <span>${repo.description}</span> <br/>
             <code>${repo.language}</code> <br />
+            <br />
             <a href=${repo.homepage}>View Project</a>`;
         repoList.append(listItem);
     }

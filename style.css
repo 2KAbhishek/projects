@@ -62,12 +62,6 @@ a {
     margin-right: 8px;
 }
 
-h3 {
-    width: 100%;
-    text-align: center;
-    color: var(--accent);
-}
-
 ul {
     list-style: none;
     padding: 0;
@@ -143,6 +137,13 @@ ul {
     border-bottom-right-radius: 20px;
 }
 
+h3 {
+    margin: 4px;
+    width: 100%;
+    text-align: center;
+    color: var(--accent);
+}
+
 .repo-list {
     width: 100%;
     display: flex;
@@ -152,15 +153,33 @@ ul {
 }
 
 .repo-list li {
-    width: 90%;
+    width: 100%;
+    min-height: 150px;
+    border-radius: 10px;
     margin: 1em 0;
     border: 1px solid var(--accent);
-    padding: 0.5em;
+    padding: 1em;
     text-align: center;
+    background-color: var(--bg-user);
 }
 
 .repo-list li:hover {
     background-color: var(--bg-main);
+    box-shadow: 0 3px 6px var(--accent), 0 3px 6px var(--accent);
+}
+
+.repo-list li a {
+    padding: 10px 20px;
+    background: var(--bg-user);
+    border-radius: 30px;
+    border: 2px solid var(--accent);
+    color: var(--text);
+}
+
+.repo-list li a:hover {
+    background: var(--accent);
+    border: 2px solid var(--text);
+    transform: scale(1.1);
 }
 
 .repo-list p {
