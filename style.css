@@ -1,16 +1,175 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+:root {
+    --text: #e5e5e5;
+    --accent: #1688f0;
+    --bg-main: #000;
+    --bg-repo: #0f0f1a;
+    --bg-user: #0a0a0f;
+}
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text);
+    font-size: 16px;
+}
+
+.hide {
+    /* '!important' is to make sure that when we add the class using JS, it takes precendence */
+    display: none !important;
+}
+
+.view-repos {
+    margin-top: 1.5em;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    align-self: center;
+    width: 300px;
+}
+
+img {
+    border: 1px solid var(--accent);
+    box-shadow: 5px 10px 15px;
+    max-width: 100%;
+    height: auto;
+}
+
+.github-img {
+    width: 45px;
+    margin-right: 8px;
+}
+
+h3 {
+    width: 100%;
+    text-align: center;
+    color: var(--accent);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.user-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: var(--bg-user);
+    color: var(--text);
+    font-size: 18px;
+    padding: 2em;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.user-info figure {
+    width: 90%;
+    max-width: 200px;
+}
+
+.user-info img {
+    border-radius: 100%;
+}
+
+.user-info div {
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    padding-left: 5%;
+}
+
+.user-info div p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--text);
+    padding-bottom: 19px;
+}
+
+.filter-repos {
+    width: 300px;
+    margin-top: 1em;
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 2px solid var(--accent);
+}
+
+.repos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: var(--bg-repo);
+    margin-top: 0;
+    padding: 2em;
+}
+
+.repo-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.repo-list li {
+    width: 90%;
+    margin: 1em 0;
+    border: 1px solid var(--accent);
+    padding: 0.5em;
+    text-align: center;
+}
+
+.repo-list li:hover {
+    background-color: var(--bg-main);
+}
+
+.repo-list p {
+    padding: 0em 0.5em;
+    margin: 0.5em 0;
+}
+
+@media (min-width: 700px) {
+    .user-info div {
+        width: 45%;
+        text-align: left;
+    }
+
+    .repo-list {
+        justify-content: space-between;
+    }
+
+    .repo-list li {
+        width: 48%;
+    }
+}
+
+@media (max-width: 700px) {
+    .user-info div p {
+        margin: 10px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .repo-list li {
+        width: 30%;
+    }
 }
