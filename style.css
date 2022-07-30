@@ -123,7 +123,9 @@ ul {
 
 .filter-repos, input {
     background: var(--bg-user);
-    width: 300px;
+    width: 50%;
+    border-radius: 20px;
+    min-width: 300px;
     margin-top: 1em;
     padding: 1em;
     margin-bottom: 1em;
