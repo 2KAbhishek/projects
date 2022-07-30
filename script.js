@@ -22,7 +22,8 @@ let devicons = {
     Nim: '<i class="devicon-nixos-plain colored" style="color: #FFC200"></i> Nim',
     PHP: '<i class="devicon-php-plain colored"></i> PHP',
     PLSQL: '<i class="devicon-sqlite-plain colored"></i> PLSQL',
-    Processing: '<i class="devicon-processing-plain colored" style="color: #0096D8"></i> Processing',
+    Processing:
+        '<i class="devicon-processing-plain colored" style="color: #0096D8"></i> Processing',
     Python: '<i class="devicon-python-plain colored" style="color: #3472a6"></i> Python',
     Ruby: '<i class="devicon-ruby-plain colored"></i> Ruby',
     Rust: '<i class="devicon-rust-plain colored" style="color: #DEA584"></i> Rust',
@@ -31,17 +32,20 @@ let devicons = {
     Shell: '<i class="devicon-bash-plain colored" style="color: #89E051"></i> Shell',
     Swift: '<i class="devicon-swift-plain colored"></i> Swift',
     TypeScript: '<i class="devicon-typescript-plain colored"></i> TypeScript',
-    null: '<i class="devicon-markdown-original"></i> Markdown',
+    null: '<i class="devicon-markdown-original"></i> Markdown'
 };
 
 // get information from github profile
 const getProfile = async function () {
-    const res = await fetch(`https://api.github.com/users/${username}`, {
-        headers: {
-            Accept: 'application/vnd.github+json',
-            Authorization: 'token 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'
-        }
-    });
+    const res = await fetch(
+        `https://api.github.com/users/${username}`
+        // {
+        // headers: {
+        //     Accept: 'application/vnd.github+json',
+        //     Authorization: 'token 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'
+        // }
+        // }
+    );
     const profile = await res.json();
     displayProfile(profile);
 };
@@ -77,14 +81,14 @@ const getRepos = async function () {
     let res;
     for (let i = 1; i <= maxPages; i++) {
         res = await fetch(
-            `https://api.github.com/users/${username}/repos?&sort=pushed&per_page=100&page=${i}`,
-            {
-                headers: {
-                    Accept: 'application/vnd.github+json',
-                    Authorization:
-                        'token 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'
-                }
-            }
+            `https://api.github.com/users/${username}/repos?&sort=pushed&per_page=100&page=${i}`
+            // {
+            //     headers: {
+            //         Accept: 'application/vnd.github+json',
+            //         Authorization:
+            //             'token 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'
+            //     }
+            // }
         );
         let data = await res.json();
         repos = repos.concat(data);
