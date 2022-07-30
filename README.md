@@ -1,6 +1,6 @@
 <div align = "center">
 
-<h1><a href="https://2kabhishek.github.io/projects">projects</a></h1>
+<h1><a href="https://2kabhishek.github.io/projects">Projects</a></h1>
 
 <a href="https://github.com/2KAbhishek/projects/blob/main/LICENSE">
 <img alt="License" src="https://img.shields.io/github/license/2kabhishek/projects?style=flat&color=eee&label="> </a>
@@ -20,7 +20,7 @@
 <a href="https://github.com/2KAbhishek/projects/pulse">
 <img alt="Last Updated" src="https://img.shields.io/github/last-commit/2kabhishek/projects?style=flat&color=e06c75&label="> </a>
 
-<h3>Short sweet headline with 🎇🎉</h3>
+<h3>All Of My Projects 🛍️🎇</h3>
 
 <figure>
   <img src= "images/screenshot.png" alt="projects screenshot" style="width:100%">
@@ -32,25 +32,16 @@
 
 ## What is this
 
-projects is a web app that allows `<insert_target_audience>` to `<action/task_it_does>`.
+Present all your projects in style with a super customisable web app! ✨
 
-Tired of the hundreds of tools for building a website?
-
-Want to build good ol web pages with `HTML` `CSS` & `JavaScript`?
-
-You can of course do that, projects just makes it quicker, let your digital paintbrush loose and make something tiny.
+Projects uses the GitHub API to list all your GitHub projects in a nice searchable grid.
+Also shows pretty programming icons using devicons.
 
 ## Inspiration
 
-projects was inspired by `<reason/idea>`.
+Needed a way to display all my projects, used my portfolio project section as inspiration.
 
-## Prerequisites
-
-Before you begin, ensure you have met the following requirements:
-
-- You have installed the latest version of `<coding_language/dependency/requirement_1>`
-
-## Getting projects
+## Getting Projects
 
 To get projects, follow these steps:
 
@@ -59,13 +50,37 @@ git clone https://github.com/2kabhishek/projects
 cd projects
 ```
 
+### Setup Your Own
+
+You can easily set up projects to show your own repos.
+
+After cloning just open up `script.js` and update the `username` variable.
+Push your changes, then go to repo settings on GitHub and enable GitHub Pages.
+
+The site should be live on https://<username>.github.io/projects
+
+#### Number Of Repos
+
+The number of repos is controlled by the `maxPage` variable, the GitHub API supports 100 repos per page max.
+If you have less than 100 repos, set `maxPage` to 1, if you have 300 then 3.
+
+You can also edit the fetch query to reduce the per page repo count.
+> There's no pagination, all repos are shown on the same page.
+
+#### Authenticated Requests
+
+If you are working locally and notice the API is not sending over data, it might be because of rate limit on GitHub API requests.
+You can either wait for an hour or setup a personal access token on GitHub and pass that into the fetch request in `script.js`
+
 ## Viewing projects
 
 Open `index.html` in your favorite browser or visit [2kabhishek.github.io/projects](https://2kabhishek.github.io/projects).
 
 ## How it was built
 
-projects was built using `HTML` `CSS` & `JavaScript`.
+Projects was built using `HTML` `CSS` & `JavaScript`.
+It was built on Neovim and the python http server.
+Uses GitHub API for data and Devicons for programming icons.
 
 ## Challenges faced
 
@@ -73,18 +88,12 @@ While building projects the main challenges were `<issue/difficulty>`
 
 ## What I learned
 
-While building projects I `<learned/accomplished>` about `<learning/accomplishment>`
+- Learned about a few quirks of the fetch API, especially implementation of `maxPages`.
+- Flex, box-shadow and some other CSS tricks were revisited.
 
 ## What's next
 
-Planning to add `<feature/module>`.
-
-### To-Do
-
-- [x] Setup repo
-- [ ] Think real hard
-- [ ] Start typing
-- [ ] Finish it
+Add more languages to devicons if necessary.
 
 Hit the ⭐ button if you found this useful.
 
