@@ -137,6 +137,8 @@ ul {
     background-color: var(--bg-repo);
     margin-top: 0;
     padding: 2em;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .repo-list {
