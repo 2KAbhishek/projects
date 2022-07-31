@@ -57,6 +57,7 @@ You can easily set up projects to show your own repos.
 - Fork the repo
 - Clone it
 - Open up `script.js` and update the `username` variable to your GitHub username.
+- Open up `index.html` and update the `<title></title>` tag to make it your username
 - Push your changes
 - Go to repo settings on GitHub and enable GitHub Pages.
 
