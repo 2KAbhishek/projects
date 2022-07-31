@@ -66,7 +66,7 @@ The site should be live on `https://<your-username>.github.io/projects`
 
 Here's the projects page for [@sindresorhus](github.com/sindresorhus)
 
-![sindresorhus's projects](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/n78j6j4itdbad2cg2h0h.png) 
+![sindresorhus's projects](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/n78j6j4itdbad2cg2h0h.png)
 
 #### Number Of Repos
 
@@ -84,7 +84,7 @@ You can either wait for an hour or setup a personal access token on GitHub and p
 
 #### Programming Language Icons
 
-This project uses [Devicon](https://devicon.dev/) for adding language icons, if the language name and icon are not being 
+This project uses [Devicon](https://devicon.dev/) for adding language icons, if the language name and icon are not being
 displayed correctly for any of your repos, update `devicons` mapping in `script.js`.
 
 ## Viewing projects
@@ -104,7 +104,7 @@ Uses GitHub API for data and Devicons for programming icons.
 
 ## What's next
 
-Add more languages to devicons if necessary.
+You tell me!
 
 Hit the ⭐ button if you found this useful.
 
