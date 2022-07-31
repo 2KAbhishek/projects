@@ -30,7 +30,7 @@
 
 </div>
 
-## What is this
+## Introducing Projects
 
 Present all your projects in style with a super customizable web app! ✨
 
@@ -39,7 +39,7 @@ Also shows pretty programming icons using `devicons`.
 
 ## Inspiration
 
-Needed a way to display all my projects, used my portfolio project section as inspiration.
+Needed a way to display all my projects, used my [portfolio's project section](https://2kabhishek.github.io/#projects) as inspiration.
 
 ## Getting Projects
 
@@ -50,14 +50,23 @@ git clone https://github.com/2kabhishek/projects
 cd projects
 ```
 
-### Setup Your Own
+### Setup Your Own Projects
 
 You can easily set up projects to show your own repos.
 
-After cloning just open up `script.js` and update the `username` variable.
-Push your changes, then go to repo settings on GitHub and enable GitHub Pages.
+- Fork the repo
+- Clone it
+- Open up `script.js` and update the `username` variable to your GitHub username.
+- Open up `index.html` and update the `title` tag to make it your username.
+- You may also want to update the favicon too, update the `link` tag in `index.html`
+- Push your changes
+- Go to repo settings on GitHub and enable GitHub Pages.
 
-The site should be live on `https://<username>.github.io/projects`
+The site should be live on `https://<your-username>.github.io/projects`
+
+Here's the projects page for [@sindresorhus](github.com/sindresorhus)
+
+![sindresorhus's projects](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/n78j6j4itdbad2cg2h0h.png) 
 
 #### Number Of Repos
 
@@ -70,6 +79,7 @@ You can also edit the fetch query to reduce the per page repo count.
 #### Authenticated Requests
 
 If you are working locally and notice the API is not sending over data, it might be because of rate limit on GitHub API requests.
+
 You can either wait for an hour or setup a personal access token on GitHub and pass that into the fetch request in `script.js`
 
 ## Viewing projects
