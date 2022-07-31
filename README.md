@@ -82,6 +82,11 @@ If you are working locally and notice the API is not sending over data, it might
 
 You can either wait for an hour or setup a personal access token on GitHub and pass that into the fetch request in `script.js`
 
+#### Programming Language Icons
+
+This project uses [Devicon](https://devicon.dev/) for adding language icons, if the language name and icon are not being 
+displayed correctly for any of your repos, update `devicons` mapping in `script.js`.
+
 ## Viewing projects
 
 Open `index.html` in your favorite browser or visit [2kabhishek.github.io/projects](https://2kabhishek.github.io/projects).
