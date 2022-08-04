@@ -25,21 +25,21 @@ getProfile();
 const displayProfile = function (profile) {
     const userInfo = document.querySelector('.user-info');
     userInfo.innerHTML = `
-        <figure>
-            <img alt="user avatar" src=${profile.avatar_url} />
-        </figure>
-        <div>
-            <h2><a href=${profile.blog}><strong>${profile.name}</strong></a></h2>
-            <p>${profile.bio}</p>
-            <p>
-                <strong>Location:</strong> ${profile.location}
-            </p>
-            <p>
-                <strong>@${profile.login} </strong>
-                Repos: ${profile.public_repos}
-                Gists: ${profile.public_gists}
-            </p>
-        </div>
+    <figure>
+        <img class="profile-pic" alt="user avatar" src=${profile.avatar_url} />
+    </figure>
+    <div>
+        <h2><a href=${profile.blog}><strong>${profile.name}</strong></a></h2>
+        <p>${profile.bio}</p>
+        <p>
+            <strong>Location:</strong> ${profile.location}
+        </p>
+        <p>
+            <strong>@${profile.login} </strong>
+            Repos: ${profile.public_repos}
+            Gists: ${profile.public_gists}
+        </p>
+    </div>
     `;
 };
 
@@ -73,9 +73,8 @@ const displayRepos = function (repos) {
         listItem.classList.add('repo');
         listItem.innerHTML = `
             <h3>${repo.name}</h3>
-            <span>${repo.description}</span> <br/><br/>
-            <span>${devicons[repo.language]}</span> <br />
-            <br />
+            <p>${repo.description}</p> 
+            <span>${devicons[repo.language]}</span>
             <a href=${repo.html_url}>View Project</a>`;
         repoList.append(listItem);
     }
