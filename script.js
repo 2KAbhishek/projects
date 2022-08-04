@@ -1,4 +1,5 @@
-const username = '2kabhishek';
+import {username} from './init.js'//import username variable to use in API
+
 const maxPages = 2;
 const repoList = document.querySelector('.repo-list');
 const reposSection = document.querySelector('.repos');
@@ -151,3 +152,4 @@ const devicons = {
     Vue: '<i class="devicon-vuejs-plain colored"></i> Vue',
     null: '<i class="devicon-markdown-original"></i> Markdown'
 };
+
