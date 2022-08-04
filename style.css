@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+
 :root {
     --text-main: #484848;
     --accent: #2C2C2C;
@@ -23,7 +25,7 @@ body {
     background-color: var(--bg-main);
     color: var(--text);
     font-size: 16px;
-    background: url(images/Hinterrhein.png);
+    background: url(images/Hinterrhein.webp);
     background-size: auto;
     background-attachment: fixed;
     background-position: right top;
