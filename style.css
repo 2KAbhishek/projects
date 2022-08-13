@@ -1,9 +1,21 @@
-:root {
-    --text: #e5e5e5;
-    --accent: #1688f0;
-    --bg-main: #000;
-    --bg-repo: #0f0f1a;
-    --bg-user: #0a0a0f;
+@media (prefers-color-scheme: light) {
+    :root {
+        --text: #151515;
+        --accent: #1688f0;
+        --bg-main: #fff;
+        --bg-repo: #f0f0f0;
+        --bg-user: #f5f5f5;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #e5e5e5;
+        --accent: #1688f0;
+        --bg-main: #000;
+        --bg-repo: #0f0f1a;
+        --bg-user: #0a0a0f;
+    }
 }
 
 * {
