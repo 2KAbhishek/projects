@@ -172,7 +172,7 @@ h3 {
     box-shadow: 0 3px 6px var(--accent), 0 3px 6px var(--accent);
 }
 
-.repo-list li a {
+.link-btn {
     padding: 10px 20px;
     background: var(--bg-main);
     border-radius: 30px;
@@ -180,7 +180,7 @@ h3 {
     color: var(--text);
 }
 
-.repo-list li a:hover {
+.link-btn:hover {
     background: var(--accent);
     border: 2px solid var(--text);
     transform: scale(1.1);
