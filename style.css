@@ -67,6 +67,10 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+    color: var(--text);
+}
+
 .github-img {
     width: 45px;
     margin-right: 8px;

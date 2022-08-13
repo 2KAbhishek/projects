@@ -4,7 +4,6 @@ const repoList = document.querySelector('.repo-list');
 const reposSection = document.querySelector('.repos');
 const filterInput = document.querySelector('.filter-repos');
 
-
 // get information from github profile
 const getProfile = async function () {
     const res = await fetch(
@@ -74,7 +73,11 @@ const displayRepos = function (repos) {
         listItem.innerHTML = `
             <h3>${repo.name}</h3>
             <span>${repo.description}</span> <br/><br/>
+            <a href="https://github.com/2KAbhishek?tab=repositories&q=&language=${
+                repo.language
+            }">
             <span>${devicons[repo.language]}</span> <br />
+            </a>
             <br />
             <a class="link-btn" href=${repo.html_url}>View Project</a>`;
         repoList.append(listItem);
@@ -104,7 +107,8 @@ const devicons = {
     'C++': '<i class="devicon-cplusplus-plain colored"></i> C++',
     C: '<i class="devicon-c-plain colored"></i> C',
     Clojure: '<i class="devicon-clojure-plain colored"></i> C',
-    CoffeeScript: '<i class="devicon-coffeescript-plain colored"></i> CoffeeScript',
+    CoffeeScript:
+        '<i class="devicon-coffeescript-plain colored"></i> CoffeeScript',
     Crystal: '<i class="devicon-crystal-plain colored"></i> Crystal',
     CSS: '<i class="devicon-css3-plain colored"></i> CSS',
     Dart: '<i class="devicon-dart-plain colored"></i> Dart',
