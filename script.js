@@ -77,15 +77,18 @@ const displayRepos = (repos) => {
         }
 
         const langUrl = `${userHome}?tab=repositories&q=&language=${repo.language}`
+        const starsUrl = `${userHome}/${repo.name}/stargazers`
         let listItem = document.createElement('li');
         listItem.classList.add('repo');
         listItem.innerHTML = `
             <h3>${repo.name}</h3>
-            <span>${repo.description}</span> <br/><br/>
-            <span>${devicons[repo.language]}</span> <br />
-            </a>
-            <br />
-            <a class="link-btn" href=${repo.html_url}>View Project</a>`;
+            <span>${repo.description}</span> <br/><br/>`
+
+        if (repo.stargazers_count > 0) {
+            listItem.innerHTML += `<a href="${starsUrl}">
+            <span>⭐ ${repo.stargazers_count}</span></a>`
+        }
+
         if (repo.language) {
             listItem.innerHTML += `<a href="${langUrl}">
             <span>${devicons[repo.language]}</span> </a>`
