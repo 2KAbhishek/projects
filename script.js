@@ -1,5 +1,6 @@
 const username = '2KAbhishek';
 const maxPages = 2;
+const hideForks = true;
 const repoList = document.querySelector('.repo-list');
 const reposSection = document.querySelector('.repos');
 const filterInput = document.querySelector('.filter-repos');
@@ -68,6 +69,9 @@ getRepos();
 const displayRepos = function (repos) {
     filterInput.classList.remove('hide');
     for (const repo of repos) {
+        if (repo.fork && hideForks) {
+            continue;
+        }
         let listItem = document.createElement('li');
         listItem.classList.add('repo');
         listItem.innerHTML = `
