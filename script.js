@@ -78,6 +78,8 @@ const displayRepos = (repos) => {
 
         const langUrl = `${userHome}?tab=repositories&q=&language=${repo.language}`
         const starsUrl = `${userHome}/${repo.name}/stargazers`
+        const forksUrl = `${userHome}/${repo.name}/network/members`
+
         let listItem = document.createElement('li');
         listItem.classList.add('repo');
         listItem.innerHTML = `
@@ -92,6 +94,11 @@ const displayRepos = (repos) => {
         if (repo.language) {
             listItem.innerHTML += `<a href="${langUrl}">
             <span>${devicons[repo.language]}</span> </a>`
+        }
+
+        if (repo.forks_count > 0) {
+            listItem.innerHTML += `<a href="${starsUrl}">
+            <span>${devicons["Git"]}${repo.forks_count}</span></a>`
         }
 
         repoList.append(listItem);
@@ -116,6 +123,7 @@ filterInput.addEventListener('input', (e) => {
 
 // for programming language icons
 const devicons = {
+    Git: '<i class="devicon-git-plain" style="color: #555"></i>',
     Assembly: '<i class="devicon-labview-plain colored"></i> Assembly',
     'C#': '<i class="devicon-csharp-plain colored"></i> C#',
     'C++': '<i class="devicon-cplusplus-plain colored"></i> C++',
@@ -167,5 +175,4 @@ const devicons = {
     TypeScript: '<i class="devicon-typescript-plain colored"></i> TypeScript',
     'Vim Script': '<i class="devicon-vim-plain colored"></i> Vim Script',
     Vue: '<i class="devicon-vuejs-plain colored"></i> Vue',
-    null: '<i class="devicon-markdown-original"></i> Markdown'
 };
