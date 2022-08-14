@@ -61,6 +61,8 @@ const getRepos = async () => {
         let data = await res.json();
         repos = repos.concat(data);
     }
+    repos.sort((a, b) => b.forks_count - a.forks_count);
+    repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
     displayRepos(repos);
 };
 getRepos();
