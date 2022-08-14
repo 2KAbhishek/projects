@@ -93,24 +93,21 @@ const displayRepos = (repos) => {
 
         if (repo.language) {
             listItem.innerHTML += `<a href="${langUrl}">
-            <span>${devicons[repo.language]}</span> </a>`
+            <span>${devicons[repo.language]}</span></a>`
         }
 
         if (repo.forks_count > 0) {
             listItem.innerHTML += `<a href="${starsUrl}">
-            <span>${devicons["Git"]}${repo.forks_count}</span></a>`
+            <span>${devicons["Git"]} ${repo.forks_count}</span></a>`
         }
 
-        if (repo.homepage) {
-            listItem.innerHtml += `
-            <br /> <br />
-            <a class="link-btn" href=${repo.html_url}>View Source</a>
-            <a class="link-btn" href=${repo.homepage}>View Live</a>
-            <br />`;
+        if (repo.homepage && repo.homepage !== "") {
+            listItem.innerHTML += `<br /> <br />
+            <a class="link-btn" href=${repo.html_url}>Code ${devicons["Github"]}</a>
+            <a class="link-btn" href=${repo.homepage}>Live ${devicons["Chrome"]}</a> <br />`;
         } else {
-            listItem.innerHtml += `
-            <br /> <br />
-            <a class="link-btn" href=${repo.html_url}>View Project</a><br />`;
+            listItem.innerHTML += `<br /> <br />
+            <a class="link-btn" href=${repo.html_url}>View Project ${devicons["Github"]}</a><br />`;
         }
 
         repoList.append(listItem);
@@ -136,6 +133,8 @@ filterInput.addEventListener('input', (e) => {
 // for programming language icons
 const devicons = {
     Git: '<i class="devicon-git-plain" style="color: #555"></i>',
+    Github: '<i class="devicon-github-plain" style="color: #1688f0"></i>',
+    Chrome: '<i class="devicon-chrome-plain" style="color: #1688f0"></i>',
     Assembly: '<i class="devicon-labview-plain colored"></i> Assembly',
     'C#': '<i class="devicon-csharp-plain colored"></i> C#',
     'C++': '<i class="devicon-cplusplus-plain colored"></i> C++',
