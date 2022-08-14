@@ -69,23 +69,28 @@ getRepos();
 
 // display list of all user's public repos
 const displayRepos = (repos) => {
+    const userHome = `https://github.com/${username}`
     filterInput.classList.remove('hide');
     for (const repo of repos) {
         if (repo.fork && hideForks) {
             continue;
         }
+
+        const langUrl = `${userHome}?tab=repositories&q=&language=${repo.language}`
         let listItem = document.createElement('li');
         listItem.classList.add('repo');
         listItem.innerHTML = `
             <h3>${repo.name}</h3>
             <span>${repo.description}</span> <br/><br/>
-            <a href="https://github.com/2KAbhishek?tab=repositories&q=&language=${
-                repo.language
-            }">
             <span>${devicons[repo.language]}</span> <br />
             </a>
             <br />
             <a class="link-btn" href=${repo.html_url}>View Project</a>`;
+        if (repo.language) {
+            listItem.innerHTML += `<a href="${langUrl}">
+            <span>${devicons[repo.language]}</span> </a>`
+        }
+
         repoList.append(listItem);
     }
 };
