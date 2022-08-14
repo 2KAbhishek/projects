@@ -6,7 +6,7 @@ const reposSection = document.querySelector('.repos');
 const filterInput = document.querySelector('.filter-repos');
 
 // get information from github profile
-const getProfile = async function () {
+const getProfile = async () => {
     const res = await fetch(
         `https://api.github.com/users/${username}`
         // {
@@ -22,7 +22,7 @@ const getProfile = async function () {
 getProfile();
 
 // display infomation from github profile
-const displayProfile = function (profile) {
+const displayProfile = (profile) => {
     const userInfo = document.querySelector('.user-info');
     userInfo.innerHTML = `
         <figure>
@@ -44,7 +44,7 @@ const displayProfile = function (profile) {
 };
 
 // get list of user's public repos
-const getRepos = async function () {
+const getRepos = async () => {
     let repos = [];
     let res;
     for (let i = 1; i <= maxPages; i++) {
@@ -66,7 +66,7 @@ const getRepos = async function () {
 getRepos();
 
 // display list of all user's public repos
-const displayRepos = function (repos) {
+const displayRepos = (repos) => {
     filterInput.classList.remove('hide');
     for (const repo of repos) {
         if (repo.fork && hideForks) {
@@ -89,7 +89,7 @@ const displayRepos = function (repos) {
 };
 
 // dynamic search
-filterInput.addEventListener('input', function (e) {
+filterInput.addEventListener('input', (e) => {
     const search = e.target.value;
     const repos = document.querySelectorAll('.repo');
     const searchLowerText = search.toLowerCase();
