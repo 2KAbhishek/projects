@@ -101,6 +101,18 @@ const displayRepos = (repos) => {
             <span>${devicons["Git"]}${repo.forks_count}</span></a>`
         }
 
+        if (repo.homepage) {
+            listItem.innerHtml += `
+            <br /> <br />
+            <a class="link-btn" href=${repo.html_url}>View Source</a>
+            <a class="link-btn" href=${repo.homepage}>View Live</a>
+            <br />`;
+        } else {
+            listItem.innerHtml += `
+            <br /> <br />
+            <a class="link-btn" href=${repo.html_url}>View Project</a><br />`;
+        }
+
         repoList.append(listItem);
     }
 };
