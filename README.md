@@ -76,6 +76,10 @@ If you have less than 100 repos, set `maxPages` to 1, if you have 300 then 3.
 You can also edit the fetch query to reduce the per page repo count.
 > There's no pagination, all repos are shown on the same page.
 
+### Forked Repos
+
+Forked repos are hidden by default, to show them set `hideForks = true` in `script.js`
+
 ### Authenticated Requests
 
 If you are working locally and notice the API is not sending over data, it might be because of rate limit on GitHub API requests.
