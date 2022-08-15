@@ -64,7 +64,7 @@ You can easily set up projects to show your own repos.
 
 The site should be live on `https://<your-username>.github.io/projects`
 
-Here's the projects page for [@sindresorhus](github.com/sindresorhus)
+Here's the projects page for [@sindresorhus](https://github.com/sindresorhus)
 
 ![sindresorhus's projects](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/n78j6j4itdbad2cg2h0h.png)
 
