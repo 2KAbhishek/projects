@@ -66,7 +66,7 @@ The site should be live on `https://<your-username>.github.io/projects`
 
 Here's the projects page for [@sindresorhus](https://github.com/sindresorhus)
 
-![sindresorhus's projects](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/n78j6j4itdbad2cg2h0h.png)
+![sindresorhus's projects](./images/demo.png)
 
 ### Number Of Repos
 
@@ -90,6 +90,8 @@ You can either wait for an hour or setup a personal access token on GitHub and p
 
 Comes with a dark and light theme by default, depends upon your system configs.
 Edit the variables under `:root` in `styles.css` to modify colorscheme.
+
+![Light screenshot](./images/screenshot-light.png)
 
 ### Programming Language Icons
 
