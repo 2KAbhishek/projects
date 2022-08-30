@@ -78,7 +78,7 @@ You can also edit the fetch query to reduce the per page repo count.
 
 ### Forked Repos
 
-Forked repos are hidden by default, to show them set `hideForks = true` in `script.js`
+Forked repos are hidden by default, to show them set `hideForks = false` in `script.js`
 
 ### Authenticated Requests
 
