@@ -69,7 +69,9 @@ h2 {
 
 img {
     border: 2px solid var(--accent);
-    box-shadow: 0 0px 6px var(--accent), 0 0px 6px var(--accent);
+    box-shadow:
+        0 0px 6px var(--accent),
+        0 0px 6px var(--accent);
     max-width: 100%;
     height: auto;
 }
@@ -185,7 +187,9 @@ h3 {
 
 .repo-list li:hover {
     background-color: var(--bg-main);
-    box-shadow: 0 3px 6px var(--accent), 0 3px 6px var(--accent);
+    box-shadow:
+        0 3px 6px var(--accent),
+        0 3px 6px var(--accent);
 }
 
 .link-btn {
