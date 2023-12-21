@@ -44,33 +44,59 @@ const displayProfile = (profile) => {
 };
 
 // get list of user's public repos
-const getRepos = async () => {
-    let repos = [];
-    let res;
-    for (let i = 1; i <= maxPages; i++) {
-        res = await fetch(
-            `https://api.github.com/users/${username}/repos?&sort=pushed&per_page=100&page=${i}`
-            // {
-            //     headers: {
-            //         Accept: 'application/vnd.github+json',
-            //         Authorization:
-            //             'token your-personal-access-token-here'
-            //     }
-            // }
-        );
-        let data = await res.json();
-        repos = repos.concat(data);
-    }
-    repos.sort((a, b) => b.forks_count - a.forks_count);
-    repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+// const getRepos = async () => {
+//     let res = await fetch(
+//         `https://api.github.com/users/${username}/repos?&sort=pushed&per_page=15&page=1`
+//     );
+//     let repos = await res.json();
+//     displayRepos(repos);
+// };
+// getRepos();
+
+
+let currentPage = 1;
+
+const getRepos = async (page) => {
+    const res = await fetch(
+        `https://api.github.com/users/${username}/repos?&sort=pushed&per_page=15&page=${page}`
+    );
+    const repos = await res.json();
     displayRepos(repos);
 };
-getRepos();
+
+
+getRepos(currentPage);  // Initially load the first page
+
+// Display pagination numbers
+const displayPagination = () => {
+    const paginationDiv = document.querySelector('.pagination');
+    paginationDiv.innerHTML = '';  // Clear existing pagination numbers
+
+    for (let i = 1; i <= maxPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.innerText = i;
+        
+        // Add click event to fetch repos for the clicked page number
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            getRepos(currentPage);
+        });
+
+        paginationDiv.appendChild(pageButton);
+    }
+};
+
+displayPagination();  // Initially display pagination
+
 
 // display list of all user's public repos
 const displayRepos = (repos) => {
+    // Clear existing repositories from the list
+    repoList.innerHTML = '';
+
     const userHome = `https://github.com/${username}`;
     filterInput.classList.remove('hide');
+    
     for (const repo of repos) {
         if (repo.fork && hideForks) {
             continue;
@@ -113,6 +139,7 @@ const displayRepos = (repos) => {
         repoList.append(listItem);
     }
 };
+
 
 // dynamic search
 filterInput.addEventListener('input', (e) => {
