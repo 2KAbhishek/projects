@@ -21,7 +21,7 @@ const getProfile = async () => {
 };
 getProfile();
 
-// display infomation from github profile
+// display information from github profile
 const displayProfile = (profile) => {
     const userInfo = document.querySelector('.user-info');
     userInfo.innerHTML = `
