@@ -30,7 +30,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     background-color: var(--bg-main);
     color: var(--text);
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .container {
@@ -62,7 +62,6 @@ small {
 
 h2 {
     width: 100%;
-    text-align: center;
     color: var(--text);
     margin: 0;
 }
@@ -101,8 +100,8 @@ ul {
     justify-content: center;
     background-color: var(--bg-user);
     color: var(--text);
-    font-size: 18px;
-    padding: 2em;
+    font-size: 16px;
+    padding: 1em;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
@@ -234,6 +233,6 @@ h3 {
 
 @media (min-width: 1200px) {
     .repo-list li {
-        width: 30%;
+        width: 32%;
     }
 }
