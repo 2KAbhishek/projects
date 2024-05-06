@@ -29,15 +29,16 @@ const displayProfile = (profile) => {
             <img alt="user avatar" src=${profile.avatar_url} />
         </figure>
         <div>
-            <h2><a href=${profile.blog}><strong>${profile.name}</strong></a></h2>
+            <h2><a href=${profile.blog}><strong>${profile.name} - ${profile.login}</strong></a></h2>
             <p>${profile.bio}</p>
             <p>
-                <strong>Location:</strong> ${profile.location}
+                Followers: <strong>${profile.followers}</strong>
+                Repos: <strong>${profile.public_repos}</strong>
+                Gists: <strong>${profile.public_gists}</strong>
             </p>
             <p>
-                <strong>@${profile.login} </strong>
-                Repos: ${profile.public_repos}
-                Gists: ${profile.public_gists}
+                Work: ${profile.company}
+                Location: ${profile.location}
             </p>
         </div>
     `;
