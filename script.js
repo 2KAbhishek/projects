@@ -108,7 +108,7 @@ const displayRepos = (repos) => {
             <a class="link-btn" href=${repo.homepage}>Live ${devicons['Chrome']}</a> <br />`;
         } else {
             listItem.innerHTML += `<br /> <br />
-            <a class="link-btn" href=${repo.html_url}>View Project ${devicons['Github']}</a><br />`;
+            <a class="link-btn" href=${repo.html_url}>Code ${devicons['Github']}</a><br />`;
         }
 
         repoList.append(listItem);
