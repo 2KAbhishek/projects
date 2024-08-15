@@ -104,12 +104,14 @@ const displayRepos = (repos) => {
         }
 
         if (repo.homepage && repo.homepage !== '') {
-            listItem.innerHTML += `<br /> <br />
-            <a class="link-btn" href=${repo.html_url}>Code ${devicons['Github']}</a>
-            <a class="link-btn" href=${repo.homepage}>Live ${devicons['Chrome']}</a> <br />`;
+            listItem.innerHTML += `<br />
+            <a class="link-btn" href=${repo.html_url}>${devicons['Github']} Code</a>
+            <a class="link-btn" href=${repo.homepage}>${devicons['Chrome']} Live</a>
+            <br />`;
         } else {
-            listItem.innerHTML += `<br /> <br />
-            <a class="link-btn" href=${repo.html_url}>Code ${devicons['Github']}</a><br />`;
+            listItem.innerHTML += `<br />
+            <a class="link-btn" href=${repo.html_url}>${devicons['Github']} Code</a>
+            <br />`;
         }
 
         repoList.append(listItem);
