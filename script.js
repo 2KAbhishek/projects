@@ -85,7 +85,8 @@ const displayRepos = (repos) => {
         listItem.classList.add('repo');
         listItem.innerHTML = `
             <h3 class='repo-name'>${repo.name}</h3>
-            <span class='repo-description'>${repo.description}</span> <br/><br/>`;
+            <span class='repo-description'>${repo.description}</span>
+            <br/><br/>`;
 
         if (repo.stargazers_count > 0) {
             listItem.innerHTML += `<a href="${starsUrl}">
@@ -98,7 +99,7 @@ const displayRepos = (repos) => {
         }
 
         if (repo.forks_count > 0) {
-            listItem.innerHTML += `<a href="${starsUrl}">
+            listItem.innerHTML += `<a href="${forksUrl}">
             <span>${devicons['Git']} ${repo.forks_count}</span></a>`;
         }
 
