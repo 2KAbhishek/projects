@@ -179,7 +179,7 @@ h3 {
     border-radius: 10px;
     margin: 1em 0;
     border: 1px solid var(--accent);
-    padding: 1.5em;
+    padding: 1em;
     text-align: center;
     background-color: var(--bg-user);
 }
@@ -192,6 +192,8 @@ h3 {
 }
 
 .link-btn {
+    display: inline-block;
+    margin: 1em 0.5em;
     padding: 10px 20px;
     background: var(--bg-main);
     border-radius: 30px;
@@ -238,9 +240,13 @@ h3 {
 }
 
 .repo-name {
-    font-size: 1.5rem;
+    font-size: 1.75em;
 }
 
 .repo-descriptopn {
-    font-size: 1rem;
+    font-size: 1em;
+}
+
+span {
+    margin: 0 0.5em;
 }
