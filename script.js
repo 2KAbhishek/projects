@@ -105,17 +105,17 @@ const displayRepos = (repos) => {
 
         if (repo.stargazers_count > 0) {
             listItem.innerHTML += `<a href="${starsUrl}">
-            <span>⭐ ${repo.stargazers_count}</span></a>`;
+            <span class="repo-badge">⭐ ${repo.stargazers_count}</span></a>`;
         }
 
         if (repo.language) {
             listItem.innerHTML += `<a href="${langUrl}">
-            <span>${devicons[repo.language]}</span></a>`;
+            <span class="repo-badge">${devicons[repo.language]}</span></a>`;
         }
 
         if (repo.forks_count > 0) {
             listItem.innerHTML += `<a href="${forksUrl}">
-            <span>${devicons['Git']} ${repo.forks_count}</span></a>`;
+            <span class="repo-badge">${devicons['Git']} ${repo.forks_count}</span></a>`;
         }
 
         if (repo.homepage && repo.homepage !== '') {

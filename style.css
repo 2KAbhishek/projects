@@ -270,3 +270,26 @@ h3 {
 span {
     margin: 0 0.5em;
 }
+
+.repo-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background-color: var(--bg-repo);
+    font-size: 0.9em;
+    border: 1px solid var(--accent);
+    color: var(--text);
+    margin: 0.25em !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.repo-badge:hover {
+    background-color: var(--accent);
+    color: var(--bg-main);
+    border-color: var(--text);
+}
+
+.repo-badge i {
+    margin-right: 4px;
+}
