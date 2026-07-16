@@ -53,8 +53,13 @@ h1, h2, h3, .repo-name {
 }
 
 h1 {
-    color: var(--accent);
+    background: linear-gradient(135deg, var(--accent), #796bdc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 4px;
+    font-weight: 800;
+    font-size: 2.8em;
+    text-align: center;
 }
 
 small {
