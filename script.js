@@ -152,8 +152,8 @@ filterInput.addEventListener('input', (e) => {
 // for programming language icons
 const devicons = {
     Git: '<i class="devicon-git-plain" style="color: #555"></i>',
-    Github: '<i class="devicon-github-plain" style="color: #1688f0"></i>',
-    Chrome: '<i class="devicon-chrome-plain" style="color: #1688f0"></i>',
+    Github: '<i class="devicon-github-plain"></i>',
+    Chrome: '<i class="devicon-chrome-plain"></i>',
     Assembly: '<i class="devicon-labview-plain colored"></i> Assembly',
     'C#': '<i class="devicon-csharp-plain colored"></i> C#',
     'C++': '<i class="devicon-cplusplus-plain colored"></i> C++',

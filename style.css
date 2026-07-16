@@ -196,15 +196,26 @@ h3 {
     margin: 1em 0.5em;
     padding: 10px 20px;
     background: var(--bg-main);
-    border-radius: 30px;
-    border: 2px solid var(--accent);
+    border-radius: 10px;
+    border: 3px solid var(--accent);
     color: var(--text);
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .link-btn:hover {
     background: var(--accent);
-    border: 2px solid var(--text);
-    transform: scale(1.1);
+    border: 3px solid var(--text);
+    color: var(--bg-main);
+    transform: scale(1.05);
+}
+
+.link-btn i {
+    color: var(--accent);
+    transition: color 0.2s ease;
+}
+
+.link-btn:hover i {
+    color: var(--bg-main);
 }
 
 .repo-list p {
