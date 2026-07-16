@@ -187,17 +187,15 @@ h3 {
 
 .repo-list {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5em;
+    margin-top: 1em;
 }
 
 .repo-list li {
-    width: 100%;
     min-height: 200px;
     border-radius: 10px;
-    margin: 1em 0;
     border: 2px solid var(--accent);
     padding: 1.25em;
     text-align: center;
@@ -208,6 +206,15 @@ h3 {
     justify-content: flex-start;
     align-items: center;
     gap: 0.75em;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 2em;
+    color: var(--text);
 }
 
 .repo-list li:hover {
@@ -255,25 +262,11 @@ h3 {
         width: 45%;
         text-align: left;
     }
-
-    .repo-list {
-        justify-content: space-between;
-    }
-
-    .repo-list li {
-        width: 48%;
-    }
 }
 
 @media (max-width: 700px) {
     .user-info div p {
         margin: 10px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .repo-list li {
-        width: 32%;
     }
 }
 
