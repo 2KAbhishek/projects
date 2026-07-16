@@ -21,6 +21,8 @@ const getProfile = async () => {
 };
 getProfile();
 
+let totalStars = 0;
+
 // display information from github profile
 const displayProfile = (profile) => {
     const userInfo = document.querySelector('.user-info');
@@ -32,6 +34,7 @@ const displayProfile = (profile) => {
             <h2><a href=${profile.blog}><strong>${profile.name} - ${profile.login}</strong></a></h2>
             <p>${profile.bio}</p>
             <p>
+                Stars: <strong class="total-stars">${totalStars}</strong>
                 Followers: <strong>${profile.followers}</strong>
                 Repos: <strong>${profile.public_repos}</strong>
                 Gists: <strong>${profile.public_gists}</strong>
@@ -60,10 +63,22 @@ const getRepos = async () => {
             // }
         );
         let data = await res.json();
-        repos = repos.concat(data);
+        if (Array.isArray(data)) {
+            repos = repos.concat(data);
+        }
     }
     repos.sort((a, b) => b.forks_count - a.forks_count);
     repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+    totalStars = repos
+        .filter((repo) => repo && !repo.fork)
+        .reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
+
+    const totalStarsElement = document.querySelector('.total-stars');
+    if (totalStarsElement) {
+        totalStarsElement.textContent = totalStars;
+    }
+
     displayRepos(repos);
 };
 getRepos();
