@@ -27,10 +27,14 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: var(--bg-main);
     color: var(--text);
     font-size: 14px;
+}
+
+h1, h2, h3, .repo-name {
+    font-family: 'Outfit', sans-serif;
 }
 
 .container {
