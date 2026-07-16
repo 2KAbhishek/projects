@@ -87,6 +87,7 @@ getRepos();
 const displayRepos = (repos) => {
     const userHome = `https://github.com/${username}`;
     filterInput.classList.remove('hide');
+    repoList.innerHTML = '';
     for (const repo of repos) {
         if (repo.fork && hideForks) {
             continue;
@@ -98,36 +99,36 @@ const displayRepos = (repos) => {
 
         let listItem = document.createElement('li');
         listItem.classList.add('repo');
+
+        const starsHtml = repo.stargazers_count > 0
+            ? `<a href="${starsUrl}"><span class="repo-badge">⭐ ${repo.stargazers_count}</span></a>`
+            : '';
+        const langHtml = repo.language
+            ? `<a href="${langUrl}"><span class="repo-badge">${devicons[repo.language]}</span></a>`
+            : '';
+        const forksHtml = repo.forks_count > 0
+            ? `<a href="${forksUrl}"><span class="repo-badge">${devicons['Git']} ${repo.forks_count}</span></a>`
+            : '';
+
+        const statsHtml = (starsHtml || langHtml || forksHtml)
+            ? `<div class="repo-stats">${starsHtml}${langHtml}${forksHtml}</div>`
+            : '';
+
+        const homepageHtml = repo.homepage && repo.homepage !== ''
+            ? `<a class="link-btn" href=${repo.homepage}>${devicons['Chrome']} Live</a>`
+            : '';
+
         listItem.innerHTML = `
-            <h3 class='repo-name'>${repo.name}</h3>
-            <span class='repo-description'>${repo.description}</span>
-            <br/><br/>`;
-
-        if (repo.stargazers_count > 0) {
-            listItem.innerHTML += `<a href="${starsUrl}">
-            <span class="repo-badge">⭐ ${repo.stargazers_count}</span></a>`;
-        }
-
-        if (repo.language) {
-            listItem.innerHTML += `<a href="${langUrl}">
-            <span class="repo-badge">${devicons[repo.language]}</span></a>`;
-        }
-
-        if (repo.forks_count > 0) {
-            listItem.innerHTML += `<a href="${forksUrl}">
-            <span class="repo-badge">${devicons['Git']} ${repo.forks_count}</span></a>`;
-        }
-
-        if (repo.homepage && repo.homepage !== '') {
-            listItem.innerHTML += `<br />
-            <a class="link-btn" href=${repo.html_url}>${devicons['Github']} Code</a>
-            <a class="link-btn" href=${repo.homepage}>${devicons['Chrome']} Live</a>
-            <br />`;
-        } else {
-            listItem.innerHTML += `<br />
-            <a class="link-btn" href=${repo.html_url}>${devicons['Github']} Code</a>
-            <br />`;
-        }
+            <div class="repo-header">
+                <h3 class='repo-name'>${repo.name}</h3>
+                <span class='repo-description'>${repo.description || 'No description provided.'}</span>
+            </div>
+            ${statsHtml}
+            <div class="repo-actions">
+                <a class="link-btn" href=${repo.html_url}>${devicons['Github']} Code</a>
+                ${homepageHtml}
+            </div>
+        `;
 
         repoList.append(listItem);
     }
