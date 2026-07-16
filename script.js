@@ -139,13 +139,34 @@ filterInput.addEventListener('input', (e) => {
     const search = e.target.value;
     const repos = document.querySelectorAll('.repo');
     const searchLowerText = search.toLowerCase();
+    let visibleCount = 0;
 
     for (const repo of repos) {
         const lowerText = repo.innerText.toLowerCase();
         if (lowerText.includes(searchLowerText)) {
             repo.classList.remove('hide');
+            visibleCount++;
         } else {
             repo.classList.add('hide');
+        }
+    }
+
+    let noResultsMsg = document.querySelector('.no-results');
+    if (visibleCount === 0) {
+        if (!noResultsMsg) {
+            noResultsMsg = document.createElement('p');
+            noResultsMsg.classList.add('no-results');
+            noResultsMsg.style.width = '100%';
+            noResultsMsg.style.textAlign = 'center';
+            noResultsMsg.style.fontSize = '1.2em';
+            noResultsMsg.style.marginTop = '2em';
+            noResultsMsg.style.color = 'var(--text)';
+            repoList.appendChild(noResultsMsg);
+        }
+        noResultsMsg.textContent = `No projects found matching "${search}"`;
+    } else {
+        if (noResultsMsg) {
+            noResultsMsg.remove();
         }
     }
 });

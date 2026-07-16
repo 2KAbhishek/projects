@@ -47,6 +47,15 @@ h1, h2, h3, .repo-name {
     max-width: 1280px;
 }
 
+.intro {
+    width: 100%;
+}
+
+h4 {
+    width: 100%;
+    text-align: center;
+}
+
 .hide {
     /* '!important' is to make sure that when we add the class using JS, it takes precendence */
     display: none !important;
@@ -60,6 +69,7 @@ h1 {
     font-weight: 800;
     font-size: 2.8em;
     text-align: center;
+    width: 100%;
 }
 
 small {
@@ -165,6 +175,7 @@ input {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     margin-bottom: 4em;
+    width: 100%;
 }
 
 h3 {
