@@ -223,3 +223,16 @@ const devicons = {
     'Vim Script': '<i class="devicon-vim-plain colored"></i> Vim Script',
     Vue: '<i class="devicon-vuejs-plain colored"></i> Vue'
 };
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== filterInput) {
+        e.preventDefault();
+        filterInput.focus();
+    }
+    if (e.key === 'Escape') {
+        filterInput.value = '';
+        filterInput.dispatchEvent(new Event('input'));
+        filterInput.blur();
+    }
+});
