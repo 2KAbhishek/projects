@@ -2,119 +2,76 @@ const username = '2KAbhishek';
 const maxPages = 3;
 const hideForks = true;
 const repoList = document.querySelector('.repo-list');
-const reposSection = document.querySelector('.repos');
 const filterInput = document.querySelector('.filter-repos');
 
-let totalStars = 0;
-
-// get information from github profile
-const getProfile = async () => {
-    try {
-        const res = await fetch(
-            `https://api.github.com/users/${username}`
-            // {
-            //     headers: {
-            //         Accept: 'application/vnd.github+json',
-            //         Authorization: 'token your-personal-access-token-here'
-            //     }
-            // }
-        );
-        if (!res.ok) {
-            throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
+const fetchProfile = async () => {
+    const res = await fetch(`https://api.github.com/users/${username}`);
+    if (!res.ok) {
+        if (res.status === 403) {
+            throw new Error('GitHub API rate limit exceeded. Please try again later.');
         }
-        const profile = await res.json();
-        displayProfile(profile);
-    } catch (err) {
-        console.error('Failed to load profile:', err);
-        const userInfo = document.querySelector('.user-info');
-        if (userInfo) {
-            userInfo.innerHTML = `<p>Failed to load profile. ${err.message}</p>`;
-        }
+        throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
     }
+    return res.json();
 };
 
-// display information from github profile
-const displayProfile = (profile) => {
+const displayProfile = (profile, totalStars) => {
     const userInfo = document.querySelector('.user-info');
+    if (!userInfo) return;
+
+    const blogUrl = profile.blog
+        ? (profile.blog.startsWith('http') ? profile.blog : `https://${profile.blog}`)
+        : `https://github.com/${profile.login}`;
+
+    const companyHtml = profile.company ? `Work: <strong>${profile.company}</strong>` : '';
+    const locationHtml = profile.location ? `Location: <strong>${profile.location}</strong>` : '';
+    const extraInfoHtml = (companyHtml || locationHtml)
+        ? `<p>${companyHtml}${companyHtml && locationHtml ? ' &nbsp;|&nbsp; ' : ''}${locationHtml}</p>`
+        : '';
+
     userInfo.innerHTML = `
         <figure>
-            <img alt="user avatar" src=${profile.avatar_url} />
+            <img alt="user avatar" src="${profile.avatar_url}" />
         </figure>
         <div>
-            <h2><a href=${profile.blog}><strong>${profile.name} - ${profile.login}</strong></a></h2>
-            <p>${profile.bio}</p>
+            <h2><a href="${blogUrl}"><strong>${profile.name || profile.login}</strong></a></h2>
+            ${profile.bio ? `<p>${profile.bio}</p>` : ''}
             <p>
-                Stars: <strong class="total-stars">${totalStars}</strong>
-                Followers: <strong>${profile.followers}</strong>
-                Repos: <strong>${profile.public_repos}</strong>
-                Gists: <strong>${profile.public_gists}</strong>
+                Stars: <strong class="total-stars">${totalStars !== null ? totalStars : '--'}</strong>
+                Followers: <strong>${profile.followers ?? 0}</strong>
+                Repos: <strong>${profile.public_repos ?? 0}</strong>
+                Gists: <strong>${profile.public_gists ?? 0}</strong>
             </p>
-            <p>
-                Work: ${profile.company}
-                Location: ${profile.location}
-            </p>
+            ${extraInfoHtml}
         </div>
     `;
 };
 
-// get list of user's public repos
-const getRepos = async () => {
+const fetchRepos = async () => {
     let repos = [];
-    try {
-        for (let i = 1; i <= maxPages; i++) {
-            const res = await fetch(
-                `https://api.github.com/users/${username}/repos?&sort=pushed&per_page=100&page=${i}`
-                // {
-                //     headers: {
-                //         Accept: 'application/vnd.github+json',
-                //         Authorization:
-                //             'token your-personal-access-token-here'
-                //     }
-                // }
-            );
-            if (!res.ok) {
-                throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
+    for (let i = 1; i <= maxPages; i++) {
+        const res = await fetch(
+            `https://api.github.com/users/${username}/repos?&sort=pushed&per_page=100&page=${i}`
+        );
+        if (!res.ok) {
+            if (res.status === 403) {
+                throw new Error('GitHub API rate limit exceeded. Please try again later.');
             }
-            const data = await res.json();
-            if (Array.isArray(data)) {
-                repos = repos.concat(data);
-                // stop early if this page wasn't full - no more pages to fetch
-                if (data.length < 100) {
-                    break;
-                }
-            } else {
+            throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
+        }
+        const data = await res.json();
+        if (Array.isArray(data)) {
+            repos = repos.concat(data);
+            if (data.length < 100) {
                 break;
             }
+        } else {
+            break;
         }
-    } catch (err) {
-        console.error('Failed to load repos:', err);
-        repoList.innerHTML = `<p>Failed to load repositories. ${err.message}</p>`;
-        return;
     }
-
-    repos.sort((a, b) => b.forks_count - a.forks_count);
-    repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
-
-    totalStars = repos
-        .filter((repo) => repo && !repo.fork)
-        .reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
-
-    const totalStarsElement = document.querySelector('.total-stars');
-    if (totalStarsElement) {
-        totalStarsElement.textContent = totalStars;
-    }
-
-    displayRepos(repos);
+    return repos;
 };
 
-// Fetch repos first so star totals are ready before/alongside the profile render,
-// then fetch the profile. Both still run, but this avoids the profile card
-// briefly showing a stale "0" for stars in the common case.
-(async () => {
-    await Promise.all([getRepos(), getProfile()]);
-})();
-
-// display list of all user's public repos
 const displayRepos = (repos) => {
     const userHome = `https://github.com/${username}`;
     filterInput.classList.remove('hide');
@@ -124,7 +81,7 @@ const displayRepos = (repos) => {
             continue;
         }
 
-        const langUrl = `${userHome}?tab=repositories&q=&language=${repo.language}`;
+        const langUrl = `${userHome}?tab=repositories&q=&language=${encodeURIComponent(repo.language || '')}`;
         const starsUrl = `${userHome}/${repo.name}/stargazers`;
         const forksUrl = `${userHome}/${repo.name}/network/members`;
 
@@ -135,8 +92,6 @@ const displayRepos = (repos) => {
             ? `<a href="${starsUrl}"><span class="repo-badge">⭐ ${repo.stargazers_count}</span></a>`
             : '';
 
-        // Guard against languages missing from the devicons map so we never
-        // render the literal string "undefined" as a badge.
         let langHtml = '';
         if (repo.language) {
             const icon = devicons[repo.language];
@@ -153,18 +108,18 @@ const displayRepos = (repos) => {
             ? `<div class="repo-stats">${starsHtml}${langHtml}${forksHtml}</div>`
             : '';
 
-        const homepageHtml = repo.homepage && repo.homepage !== ''
-            ? `<a class="link-btn" href=${repo.homepage}>${devicons['Chrome']} Live</a>`
+        const homepageHtml = repo.homepage
+            ? `<a class="link-btn" href="${repo.homepage}">${devicons['Chrome']} Live</a>`
             : '';
 
         listItem.innerHTML = `
             <div class="repo-header">
-                <h3 class='repo-name'>${repo.name}</h3>
-                <span class='repo-description'>${repo.description || 'No description provided.'}</span>
+                <h3 class="repo-name">${repo.name}</h3>
+                <span class="repo-description">${repo.description || 'No description provided.'}</span>
             </div>
             ${statsHtml}
             <div class="repo-actions">
-                <a class="link-btn" href=${repo.html_url}>${devicons['Github']} Code</a>
+                <a class="link-btn" href="${repo.html_url}">${devicons['Github']} Code</a>
                 ${homepageHtml}
             </div>
         `;
@@ -173,7 +128,42 @@ const displayRepos = (repos) => {
     }
 };
 
-// dynamic search
+(async () => {
+    const profilePromise = fetchProfile().catch((err) => {
+        console.error('Failed to load profile:', err);
+        const userInfo = document.querySelector('.user-info');
+        if (userInfo) {
+            userInfo.innerHTML = `<p class="error-msg">Failed to load profile: ${err.message}</p>`;
+        }
+        return null;
+    });
+
+    const reposPromise = fetchRepos().catch((err) => {
+        console.error('Failed to load repos:', err);
+        repoList.innerHTML = `<p class="error-msg">Failed to load repositories: ${err.message}</p>`;
+        return null;
+    });
+
+    const [profileData, reposData] = await Promise.all([profilePromise, reposPromise]);
+
+    let totalStars = null;
+
+    if (reposData) {
+        reposData.sort((a, b) => b.forks_count - a.forks_count);
+        reposData.sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+        totalStars = reposData
+            .filter((repo) => repo && !repo.fork)
+            .reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
+
+        displayRepos(reposData);
+    }
+
+    if (profileData) {
+        displayProfile(profileData, totalStars);
+    }
+})();
+
 filterInput.addEventListener('input', (e) => {
     const search = e.target.value;
     const repos = document.querySelectorAll('.repo');
@@ -205,7 +195,6 @@ filterInput.addEventListener('input', (e) => {
     }
 });
 
-// for programming language icons
 const devicons = {
     Git: '<i class="devicon-git-plain" style="color: #555"></i>',
     Github: '<i class="devicon-github-plain"></i>',
@@ -264,7 +253,6 @@ const devicons = {
     Vue: '<i class="devicon-vuejs-plain colored"></i> Vue'
 };
 
-// Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
     if (e.key === '/' && document.activeElement !== filterInput) {
         e.preventDefault();
