@@ -15,19 +15,26 @@ const fetchProfile = async () => {
     return res.json();
 };
 
-const displayProfile = (profile, totalStars) => {
+const displayProfile = (profile, totalStars, totalForks) => {
     const userInfo = document.querySelector('.user-info');
     if (!userInfo) return;
 
+    const userHome = `https://github.com/${profile.login}`;
     const blogUrl = profile.blog
         ? (profile.blog.startsWith('http') ? profile.blog : `https://${profile.blog}`)
-        : `https://github.com/${profile.login}`;
+        : userHome;
 
     const companyHtml = profile.company ? `Work: <strong>${profile.company}</strong>` : '';
     const locationHtml = profile.location ? `Location: <strong>${profile.location}</strong>` : '';
     const extraInfoHtml = (companyHtml || locationHtml)
         ? `<p>${companyHtml}${companyHtml && locationHtml ? ' &nbsp;|&nbsp; ' : ''}${locationHtml}</p>`
         : '';
+
+    const starsText = `<strong class="total-stars">${totalStars !== null ? totalStars : '--'}</strong>`;
+    const forksText = `<strong>${totalForks !== null ? totalForks : '--'}</strong>`;
+    const followersLink = `<a href="${userHome}?tab=followers"><strong>${profile.followers ?? 0}</strong></a>`;
+    const reposLink = `<a href="${userHome}?tab=repositories"><strong>${profile.public_repos ?? 0}</strong></a>`;
+    const gistsLink = `<a href="https://gist.github.com/${profile.login}"><strong>${profile.public_gists ?? 0}</strong></a>`;
 
     userInfo.innerHTML = `
         <figure>
@@ -37,10 +44,11 @@ const displayProfile = (profile, totalStars) => {
             <h2><a href="${blogUrl}"><strong>${profile.name || profile.login}</strong></a></h2>
             ${profile.bio ? `<p>${profile.bio}</p>` : ''}
             <p>
-                Stars: <strong class="total-stars">${totalStars !== null ? totalStars : '--'}</strong>
-                Followers: <strong>${profile.followers ?? 0}</strong>
-                Repos: <strong>${profile.public_repos ?? 0}</strong>
-                Gists: <strong>${profile.public_gists ?? 0}</strong>
+                Stars: ${starsText} &nbsp;|&nbsp;
+                Forks: ${forksText} &nbsp;|&nbsp;
+                Followers: ${followersLink} &nbsp;|&nbsp;
+                Repos: ${reposLink} &nbsp;|&nbsp;
+                Gists: ${gistsLink}
             </p>
             ${extraInfoHtml}
         </div>
@@ -147,6 +155,7 @@ const displayRepos = (repos) => {
     const [profileData, reposData] = await Promise.all([profilePromise, reposPromise]);
 
     let totalStars = null;
+    let totalForks = null;
 
     if (reposData) {
         reposData.sort((a, b) => b.forks_count - a.forks_count);
@@ -156,11 +165,15 @@ const displayRepos = (repos) => {
             .filter((repo) => repo && !repo.fork)
             .reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
 
+        totalForks = reposData
+            .filter((repo) => repo && !repo.fork)
+            .reduce((sum, repo) => sum + (repo.forks_count || 0), 0);
+
         displayRepos(reposData);
     }
 
     if (profileData) {
-        displayProfile(profileData, totalStars);
+        displayProfile(profileData, totalStars, totalForks);
     }
 })();
 

@@ -75,13 +75,6 @@ h1 {
   width: 100%;
 }
 
-small {
-  width: 100%;
-  text-align: center;
-  display: block;
-  margin-bottom: 20px;
-}
-
 h2 {
   width: 100%;
   color: var(--text);
