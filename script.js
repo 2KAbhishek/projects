@@ -36,12 +36,14 @@ const displayProfile = (profile, totalStars, totalForks) => {
     const reposLink = `<a href="${userHome}?tab=repositories"><strong>${profile.public_repos ?? 0}</strong></a>`;
     const gistsLink = `<a href="https://gist.github.com/${profile.login}"><strong>${profile.public_gists ?? 0}</strong></a>`;
 
+    const displayName = profile.name ? `${profile.name} (${profile.login})` : profile.login;
+
     userInfo.innerHTML = `
         <figure>
             <img alt="user avatar" src="${profile.avatar_url}" />
         </figure>
         <div>
-            <h2><a href="${blogUrl}"><strong>${profile.name || profile.login}</strong></a></h2>
+            <h2><a href="${blogUrl}"><strong>${displayName}</strong></a></h2>
             ${profile.bio ? `<p>${profile.bio}</p>` : ''}
             <p>
                 Stars: ${starsText} &nbsp;|&nbsp;

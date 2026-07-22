@@ -147,6 +147,14 @@ ul {
   padding-bottom: 18px;
 }
 
+.user-info div p a {
+  color: inherit;
+}
+
+.user-info div p a:hover {
+  color: var(--accent);
+}
+
 .filter-repos,
 input {
   background: var(--bg-card);
