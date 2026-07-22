@@ -1,340 +1,353 @@
 @media (prefers-color-scheme: light) {
-    :root {
-        --text: #151515;
-        --accent: #1688f0;
-        --bg-main: #ffffff;
-        --bg-section: #f0f0f0;
-        --bg-card: #f5f5f5;
-    }
+  :root {
+    --text: #151515;
+    --accent: #1688f0;
+    --bg-main: #ffffff;
+    --bg-section: #f0f0f0;
+    --bg-card: #f5f5f5;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --text: #dedede;
-        --accent: #1688f0;
-        --bg-main: #000000;
-        --bg-section: #000000;
-        --bg-card: #000000;
-    }
+  :root {
+    --text: #dedede;
+    --accent: #1688f0;
+    --bg-main: #000000;
+    --bg-section: #000000;
+    --bg-card: #000000;
+  }
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-main);
-    color: var(--text);
-    font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text);
+  font-size: 14px;
 }
 
-h1, h2, h3, .repo-name {
-    font-family: 'Inter', sans-serif;
+h1,
+h2,
+h3,
+.repo-name {
+  font-family: "Inter", sans-serif;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 90%;
-    max-width: 1280px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 90%;
+  max-width: 1280px;
 }
 
 .intro {
-    width: 100%;
+  width: 100%;
 }
 
 h4 {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 .hide {
-    /* '!important' is to make sure that when we add the class using JS, it takes precendence */
-    display: none !important;
+  /* '!important' is to make sure that when we add the class using JS, it takes precendence */
+  display: none !important;
 }
 
 h1 {
-    background: linear-gradient(135deg, var(--accent), #796bdc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 4px;
-    font-weight: 800;
-    font-size: 2.8em;
-    text-align: center;
-    width: 100%;
+  background: linear-gradient(135deg, var(--accent), #796bdc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 4px;
+  font-weight: 800;
+  font-size: 2.8em;
+  text-align: center;
+  width: 100%;
 }
 
 small {
-    width: 100%;
-    text-align: center;
-    display: block;
-    margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+  display: block;
+  margin-bottom: 20px;
 }
 
 h2 {
-    width: 100%;
-    color: var(--text);
-    margin: 0;
+  width: 100%;
+  color: var(--text);
+  margin: 0;
 }
 
 img {
-    border: 2px solid var(--accent);
-    box-shadow:
-        0 0px 6px var(--accent),
-        0 0px 6px var(--accent);
-    max-width: 100%;
-    height: auto;
+  border: 2px solid var(--accent);
+  box-shadow:
+    0 0px 6px var(--accent),
+    0 0px 6px var(--accent);
+  max-width: 100%;
+  height: auto;
 }
 
 a {
-    color: var(--accent);
-    text-decoration: none;
+  color: var(--accent);
+  text-decoration: none;
 }
 
 a:hover {
-    color: var(--text);
+  color: var(--text);
 }
 
 .github-img {
-    width: 45px;
-    margin-right: 8px;
+  width: 45px;
+  margin-right: 8px;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .user-info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: var(--bg-card);
-    color: var(--text);
-    font-size: 16px;
-    padding: 1em;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: var(--bg-card);
+  color: var(--text);
+  font-size: 16px;
+  padding: 1em;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .user-info figure {
-    width: 90%;
-    max-width: 200px;
+  width: 90%;
+  max-width: 200px;
 }
 
 .user-info img {
-    border-radius: 100%;
+  border-radius: 100%;
 }
 
 .user-info div {
-    display: flex;
-    text-align: center;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
-    padding-left: 5%;
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  padding-left: 5%;
 }
 
 .user-info div p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border-bottom: 1px solid var(--text);
-    padding-bottom: 18px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--text);
+  padding-bottom: 18px;
 }
 
 .filter-repos,
 input {
-    background: var(--bg-card);
-    width: 50%;
-    border-radius: 20px;
-    min-width: 300px;
-    margin-top: 1em;
-    padding: 1em;
-    margin-bottom: 1em;
-    border: 2px solid var(--accent);
-    color: var(--text);
-    text-align: center;
+  background: var(--bg-card);
+  width: 50%;
+  border-radius: 20px;
+  min-width: 300px;
+  margin-top: 1em;
+  padding: 1em;
+  margin-bottom: 1em;
+  border: 2px solid var(--accent);
+  color: var(--text);
+  text-align: center;
 }
 
 .repos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: var(--bg-section);
-    margin-top: 0;
-    padding: 2em;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    margin-bottom: 4em;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: var(--bg-section);
+  margin-top: 0;
+  padding: 2em;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin-bottom: 4em;
+  width: 100%;
 }
 
 h3 {
-    margin: 4px;
-    width: 100%;
-    text-align: center;
-    color: var(--accent);
+  margin: 4px;
+  width: 100%;
+  text-align: center;
+  color: var(--accent);
 }
 
 .repo-list {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5em;
-    margin-top: 1em;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5em;
+  margin-top: 1em;
 }
 
 .repo-list li {
-    min-height: 200px;
-    border-radius: 10px;
-    border: 2px solid var(--accent);
-    padding: 1.25em;
-    text-align: center;
-    background-color: var(--bg-card);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0.75em;
+  min-height: 200px;
+  border-radius: 10px;
+  border: 2px solid var(--accent);
+  padding: 1.25em;
+  text-align: center;
+  background-color: var(--bg-card);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.75em;
 }
 
 .no-results {
-    grid-column: 1 / -1;
-    width: 100%;
-    text-align: center;
-    font-size: 1.2em;
-    margin-top: 2em;
-    color: var(--text);
+  grid-column: 1 / -1;
+  width: 100%;
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 2em;
+  color: var(--text);
 }
 
 .repo-list li:hover {
-    background-color: var(--bg-main);
-    box-shadow:
-        0 8px 16px var(--accent),
-        0 8px 16px var(--accent);
-    transform: translateY(-4px);
+  background-color: var(--bg-main);
+  box-shadow:
+    0 8px 16px var(--accent),
+    0 8px 16px var(--accent);
+  transform: translateY(-4px);
 }
 
 .link-btn {
-    display: inline-block;
-    margin: 0 0.25em;
-    padding: 8px 16px;
-    background: var(--bg-main);
-    border-radius: 10px;
-    border: 3px solid var(--accent);
-    color: var(--text);
-    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  display: inline-block;
+  margin: 0 0.25em;
+  padding: 8px 16px;
+  background: var(--bg-main);
+  border-radius: 10px;
+  border: 3px solid var(--accent);
+  color: var(--text);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .link-btn:hover {
-    background: var(--accent);
-    border: 3px solid var(--text);
-    color: var(--bg-main);
-    transform: scale(1.05);
+  background: var(--accent);
+  border: 3px solid var(--text);
+  color: var(--bg-main);
+  transform: scale(1.05);
 }
 
 .link-btn i {
-    color: var(--accent);
-    transition: color 0.2s ease;
+  color: var(--accent);
+  transition: color 0.2s ease;
 }
 
 .link-btn:hover i {
-    color: var(--bg-main);
+  color: var(--bg-main);
 }
 
 .repo-list p {
-    padding: 0.5em;
-    margin: 0.5em 0;
+  padding: 0.5em;
+  margin: 0.5em 0;
 }
 
 @media (min-width: 700px) {
-    .user-info div {
-        width: 45%;
-        text-align: left;
-    }
+  .user-info div {
+    flex: 0.7;
+    text-align: left;
+  }
 }
 
 @media (max-width: 700px) {
-    .user-info div p {
-        margin: 10px;
-    }
+  .user-info div p {
+    margin: 10px;
+  }
 }
 
 .repo-name {
-    font-size: 1.75em;
+  font-size: 1.75em;
 }
 
 .repo-description {
-    font-size: 0.95em;
-    opacity: 0.8;
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 0.5em;
-    height: 3em;
+  font-size: 0.95em;
+  opacity: 0.8;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.5em;
+  height: 3em;
 }
 
 .repo-header {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
 }
 
 .repo-stats {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.25em;
-    margin: 0.5em 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25em;
+  margin: 0.5em 0;
 }
 
 .repo-actions {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 0.5em;
-    margin-top: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+  margin-top: auto;
 }
 
 span {
-    margin: 0 0.5em;
+  margin: 0 0.5em;
 }
 
 .repo-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 12px;
-    border-radius: 20px;
-    background-color: var(--bg-section);
-    font-size: 0.9em;
-    border: 1px solid var(--accent);
-    color: var(--text);
-    margin: 0.25em !important;
-    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: var(--bg-section);
+  font-size: 0.9em;
+  border: 1px solid var(--accent);
+  color: var(--text);
+  margin: 0.25em !important;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .repo-badge:hover {
-    background-color: var(--accent);
-    color: var(--bg-main);
-    border-color: var(--text);
+  background-color: var(--accent);
+  color: var(--bg-main);
+  border-color: var(--text);
 }
 
 .repo-badge i {
-    margin-right: 4px;
+  margin-right: 4px;
 }
