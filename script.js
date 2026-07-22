@@ -5,23 +5,33 @@ const repoList = document.querySelector('.repo-list');
 const reposSection = document.querySelector('.repos');
 const filterInput = document.querySelector('.filter-repos');
 
+let totalStars = 0;
+
 // get information from github profile
 const getProfile = async () => {
-    const res = await fetch(
-        `https://api.github.com/users/${username}`
-        // {
-        //     headers: {
-        //         Accept: 'application/vnd.github+json',
-        //         Authorization: 'token your-personal-access-token-here'
-        //     }
-        // }
-    );
-    const profile = await res.json();
-    displayProfile(profile);
+    try {
+        const res = await fetch(
+            `https://api.github.com/users/${username}`
+            // {
+            //     headers: {
+            //         Accept: 'application/vnd.github+json',
+            //         Authorization: 'token your-personal-access-token-here'
+            //     }
+            // }
+        );
+        if (!res.ok) {
+            throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
+        }
+        const profile = await res.json();
+        displayProfile(profile);
+    } catch (err) {
+        console.error('Failed to load profile:', err);
+        const userInfo = document.querySelector('.user-info');
+        if (userInfo) {
+            userInfo.innerHTML = `<p>Failed to load profile. ${err.message}</p>`;
+        }
+    }
 };
-getProfile();
-
-let totalStars = 0;
 
 // display information from github profile
 const displayProfile = (profile) => {
@@ -50,23 +60,38 @@ const displayProfile = (profile) => {
 // get list of user's public repos
 const getRepos = async () => {
     let repos = [];
-    let res;
-    for (let i = 1; i <= maxPages; i++) {
-        res = await fetch(
-            `https://api.github.com/users/${username}/repos?&sort=pushed&per_page=100&page=${i}`
-            // {
-            //     headers: {
-            //         Accept: 'application/vnd.github+json',
-            //         Authorization:
-            //             'token your-personal-access-token-here'
-            //     }
-            // }
-        );
-        let data = await res.json();
-        if (Array.isArray(data)) {
-            repos = repos.concat(data);
+    try {
+        for (let i = 1; i <= maxPages; i++) {
+            const res = await fetch(
+                `https://api.github.com/users/${username}/repos?&sort=pushed&per_page=100&page=${i}`
+                // {
+                //     headers: {
+                //         Accept: 'application/vnd.github+json',
+                //         Authorization:
+                //             'token your-personal-access-token-here'
+                //     }
+                // }
+            );
+            if (!res.ok) {
+                throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
+            }
+            const data = await res.json();
+            if (Array.isArray(data)) {
+                repos = repos.concat(data);
+                // stop early if this page wasn't full - no more pages to fetch
+                if (data.length < 100) {
+                    break;
+                }
+            } else {
+                break;
+            }
         }
+    } catch (err) {
+        console.error('Failed to load repos:', err);
+        repoList.innerHTML = `<p>Failed to load repositories. ${err.message}</p>`;
+        return;
     }
+
     repos.sort((a, b) => b.forks_count - a.forks_count);
     repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
 
@@ -81,7 +106,13 @@ const getRepos = async () => {
 
     displayRepos(repos);
 };
-getRepos();
+
+// Fetch repos first so star totals are ready before/alongside the profile render,
+// then fetch the profile. Both still run, but this avoids the profile card
+// briefly showing a stale "0" for stars in the common case.
+(async () => {
+    await Promise.all([getRepos(), getProfile()]);
+})();
 
 // display list of all user's public repos
 const displayRepos = (repos) => {
@@ -103,9 +134,17 @@ const displayRepos = (repos) => {
         const starsHtml = repo.stargazers_count > 0
             ? `<a href="${starsUrl}"><span class="repo-badge">⭐ ${repo.stargazers_count}</span></a>`
             : '';
-        const langHtml = repo.language
-            ? `<a href="${langUrl}"><span class="repo-badge">${devicons[repo.language]}</span></a>`
-            : '';
+
+        // Guard against languages missing from the devicons map so we never
+        // render the literal string "undefined" as a badge.
+        let langHtml = '';
+        if (repo.language) {
+            const icon = devicons[repo.language];
+            langHtml = icon
+                ? `<a href="${langUrl}"><span class="repo-badge">${icon}</span></a>`
+                : `<a href="${langUrl}"><span class="repo-badge">${repo.language}</span></a>`;
+        }
+
         const forksHtml = repo.forks_count > 0
             ? `<a href="${forksUrl}"><span class="repo-badge">${devicons['Git']} ${repo.forks_count}</span></a>`
             : '';
@@ -200,7 +239,7 @@ const devicons = {
     Matlab: '<i class="devicon-matlab-plain colored"></i> Matlab',
     Nim: '<i class="devicon-nixos-plain colored" style="color: #FFC200"></i> Nim',
     Nix: '<i class="devicon-nixos-plain colored"></i> Nix',
-    ObjectiveC: '<i class="devicon-objectivec-plain colored"></i> ObjectiveC',
+    'Objective-C': '<i class="devicon-objectivec-plain colored"></i> Objective-C',
     OCaml: '<i class="devicon-ocaml-plain colored"></i> OCaml',
     Perl: '<i class="devicon-perl-plain colored"></i> Perl',
     PHP: '<i class="devicon-php-plain colored"></i> PHP',
@@ -212,6 +251,7 @@ const devicons = {
     Ruby: '<i class="devicon-ruby-plain colored"></i> Ruby',
     Rust: '<i class="devicon-rust-plain colored" style="color: #DEA584"></i> Rust',
     Sass: '<i class="devicon-sass-original colored"></i> Sass',
+    SCSS: '<i class="devicon-sass-original colored"></i> SCSS',
     Scala: '<i class="devicon-scala-plain colored"></i> Scala',
     Shell: '<i class="devicon-bash-plain colored" style="color: #89E051"></i> Shell',
     Solidity: '<i class="devicon-solidity-plain colored"></i> Solidity',
@@ -220,7 +260,7 @@ const devicons = {
     Swift: '<i class="devicon-swift-plain colored"></i> Swift',
     Terraform: '<i class="devicon-terraform-plain colored"></i> Terraform',
     TypeScript: '<i class="devicon-typescript-plain colored"></i> TypeScript',
-    'Vim Script': '<i class="devicon-vim-plain colored"></i> Vim Script',
+    'Vim script': '<i class="devicon-vim-plain colored"></i> Vim Script',
     Vue: '<i class="devicon-vuejs-plain colored"></i> Vue'
 };
 
